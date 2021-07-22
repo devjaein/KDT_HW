@@ -7,7 +7,7 @@
 ## Installation
 
 ## How to use
-####Download index.html and style.css to same folder
-####execute index.html
+#### Download index.html and style.css to same folder
+#### execute index.html
 
-##Contribute
+## Contribute
