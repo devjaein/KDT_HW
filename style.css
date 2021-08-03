@@ -22,12 +22,12 @@ body {
  .main-menu {
      width: 100%;
  }
- .main-menu > li{
+ .main-menu > li {
      list-style: none;
      float: left;
      padding: 0px 6px;
  }
- .main-menu > li >a {
+ .main-menu > li > a {
      color: white;
  }
  .sub-menu {
@@ -45,7 +45,7 @@ body {
  .sub-menu >li {
      padding: 7px;
  }
- .sub-menu >li >a{
+ .sub-menu >li > a {
      color: black;
  }
  .main-menu > li:hover .sub-menu {
