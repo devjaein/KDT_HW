@@ -1,10 +1,11 @@
 from NaverNewsCrawler import NaverNewsCrawler
+import json
 
 ####사용자로 부터 기사 수집을 원하는 키워드를 input을 이용해 입력받아 ? 부분에 넣으세요
 crawler = NaverNewsCrawler(input())
 
 #### 수집한 데이터를 저장할 엑셀 파일명을 input을 이용해 입력받아 ? 부분에 넣으세요
-crawler.get_news(input())
+crawler.get_news(input()+ str(".xlsx"))
 
 #### 아래코드를 실행해 이메일 발송 기능에 필요한 모듈을 임포트하세요.
 from email.mime.text import MIMEText
@@ -13,14 +14,18 @@ import smtplib
 import re
 
 #### gmail 발송 기능에 필요한 계정 정보를 아래 코드에 입력하세요.
+#### conf.json 파일 불러오기
+with open('conf.json') as f:
+    config = json.load(f)
+
 SMTP_SERVER = 'smtp.gmail.com'
 SMTP_PORT = 465
-SMTP_USER = 'jaiin12356@gmail.com'
-SMTP_PASSWORD = '' # 개인정보로 인해 공란으로 두었습니다.
+SMTP_USER = config['email']
+SMTP_PASSWORD = config['password']
 
 #### 아래 코드를 실행해 메일 발송에 필요한 send_mail 함수를 만드세요.
 def send_mail(name, addr, subject, contents, attachment=None):
-    if not re.match('(^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)', addr):
+    if not re.match('(^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$)', addr):
         print('Wrong email')
         return
 
@@ -39,7 +44,7 @@ def send_mail(name, addr, subject, contents, attachment=None):
         from email.mime.base import MIMEBase
         from email import encoders
 
-        file_data = MIMEBase('application', 'octect-stream')
+        file_data = MIMEBase('application', 'octet-stream')
         file_data.set_payload(open(attachment, 'rb').read())
         encoders.encode_base64(file_data)
 
@@ -62,7 +67,9 @@ from openpyxl import load_workbook
 wb = load_workbook('email_list.xlsx')
 data = wb.active
 contents = """세번째 미니 프로젝트 과제 메일입니다.
-"""
+"""    
 
-send_mail(data['B2'].value, data['C2'].value, 'third_mini_project',contents,'excel.xlsx')
-send_mail(data['B3'].value, data['C3'].value, 'third_mini_project',contents,'excel.xlsx')
+for row in data.iter_rows(min_row=2, min_col=2, max_col=3):
+    e_name = row[0].value 
+    e_mail = row[1].value
+    send_mail(e_name, e_mail, 'third_mini_project', contents, 'excel.xlsx')
