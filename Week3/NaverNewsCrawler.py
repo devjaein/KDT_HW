@@ -1,5 +1,9 @@
+# 시트 에러 처리
+from openpyxl.utils.exceptions import CellCoordinatesException, IllegalCharacterError, InvalidFileException, NamedRangeException, ReadOnlyWorkbookException, SheetTitleException, WorkbookAlreadySaved
+
 # 엑셀에 데이터를 저장하기 위한 모듈
 from openpyxl import Workbook
+import openpyxl
 
 # 웹에서 데이터를 크롤링하기 위한 모듈
 import requests
@@ -30,6 +34,21 @@ class NaverNewsCrawler:
         try:
             wb.save(file_name)
             print(f"{file_name}에 데이터 저장 완료")
-        except Exception as e:
+            print(f"{self.keyword}에 대한 기사 수집 완료")
+        except CellCoordinatesException as e: #숫자 및 셀 참조 간에 변환하는 동안 오류 발생
             print(e)
-        print(f"{self.keyword}에 대한 기사 수집 완료")
+        except IllegalCharacterError as e: #Excel 파일에서 직접 사용할 수 없는 제출된 데이터
+            print("직접 사용할 수 없는 제출 데이터로 제거하거나 이스케이프 해야합니다.")
+        except InvalidFileException as e: #oomclm이 아닌 파일을 열려고 시도하는 동안 오류 발생
+            print(e)
+        except NamedRangeException as e: #형식이 잘못된 명명된 범위에 대한 오류
+            print(e)
+        except ReadOnlyWorkbookException as e: #읽기 전용 통합 문서를 수정하는 동안 오류 발생
+            print(e)
+        except SheetTitleException as e: #잘못된 시트 이름에 대한 오류
+            print(e)
+        except WorkbookAlreadySaved as e: #이미 한 번 덤프된 덤프 통합 문서에서 작업을 수행할 때 오류 발생
+            print(e)
+        except Exception as e: #그 밖의 예외
+            print(e)
+
