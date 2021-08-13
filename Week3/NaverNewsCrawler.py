@@ -35,20 +35,19 @@ class NaverNewsCrawler:
             wb.save(file_name)
             print(f"{file_name}에 데이터 저장 완료")
             print(f"{self.keyword}에 대한 기사 수집 완료")
-        except CellCoordinatesException as e: #숫자 및 셀 참조 간에 변환하는 동안 오류 발생
-            print(e)
-        except IllegalCharacterError as e: #Excel 파일에서 직접 사용할 수 없는 제출된 데이터
+        except CellCoordinatesException:
+            print("숫자 및 셀 참조 간에 변환하는 동안 오류 발생")
+        except IllegalCharacterError:
             print("직접 사용할 수 없는 제출 데이터로 제거하거나 이스케이프 해야합니다.")
-        except InvalidFileException as e: #oomclm이 아닌 파일을 열려고 시도하는 동안 오류 발생
+        except InvalidFileException: #
+            print("oomclm이 아닌 파일을 열려고 시도하는 동안 오류 발생")
+        except NamedRangeException:
+            print("형식이 잘못된 명명된 범위에 대한 오류")
+        except ReadOnlyWorkbookException: #
+            print("읽기 전용 통합 문서를 수정하는 동안 오류 발생")
+        except SheetTitleException:
+            print("잘못된 시트 이름에 대한 오류")
+        except WorkbookAlreadySaved:
+            print("이미 한 번 덤프된 덤프 통합 문서에서 작업을 수행할 때 오류 발생")
+        except Exception as e:
             print(e)
-        except NamedRangeException as e: #형식이 잘못된 명명된 범위에 대한 오류
-            print(e)
-        except ReadOnlyWorkbookException as e: #읽기 전용 통합 문서를 수정하는 동안 오류 발생
-            print(e)
-        except SheetTitleException as e: #잘못된 시트 이름에 대한 오류
-            print(e)
-        except WorkbookAlreadySaved as e: #이미 한 번 덤프된 덤프 통합 문서에서 작업을 수행할 때 오류 발생
-            print(e)
-        except Exception as e: #그 밖의 예외
-            print(e)
-
