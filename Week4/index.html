@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <!-- 01. 기본경로 설정하기(이곳에 작성) -->        
+        <base href="./">
+        <link rel="stylesheet" href="assets/css/index.css"/>
+        <link
+            href="https://fonts.googleapis.com/css?family=Montserrat|Nanum+Gothic&display=swap"
+            rel="stylesheet"
+        />
+        <!-- 02. 브라우저 타이틀 표시하기(이곳에 작성) -->
+        <script async src="./assets/js/main.js"></script>
+        <title>MY BLOG</title>
+    </head>
+    <body>
+        <!-- 헤더 -->
+        <header class="header">
+            <div class="container">
+                <h1 class="logo-title">MY BLOG</h1>
+                <nav>
+                    <ul class="menu">
+                        <li class="menu-item">
+                            <a href="#card1"> 게시글#1</a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="#card2"> 게시글#2</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+        <!-- 본문 -->
+        <main class="content">
+            <!-- 글쓰기 영역 -->
+            <section class="write">
+                <header><h2 class="title">글쓰기</h2></header>
+                <div class="container">
+                    <form action="#">
+                        <p>
+                            <label>
+                                제목<br />
+                                <input type="text" name="subject" />
+                            </label>
+                        </p>
+                        <p>
+                            <label>
+                                내용<br />
+                                <textarea
+                                    name="content"
+                                    cols="55"
+                                    rows="5"
+                                > </textarea>
+                            </label>
+                        </p>
+                        <p>
+                            <label>
+                                이미지 업로드<br />
+                                <input
+                                    name="image"
+                                    type="file"
+                                    accept="image/jpeg, image/jpg, image/png, image/gif"
+                                />
+                            </label>
+                        </p>
+                        <hr class="separator" />
+                        <fieldset>
+                            <legend>기분(단일선택)</legend>
+                            <input
+                                type="radio"
+                                name="feeling"
+                                value="Happy"
+                                id="feeling:Happy"
+                                checked
+                            />
+                            <label for="feeling:Happy">행복함</label><br />
+                            <input
+                                type="radio"
+                                name="feeling"
+                                value="Bad"
+                                id="feeling:Bad"
+                            />
+                            <label for="feeling:Bad">나쁨</label><br />
+                            <input
+                                type="radio"
+                                name="feeling"
+                                value="Sad"
+                                id="feeling:Sad"
+                            />
+                            <label for="feeling:Sad">슬픔</label><br />
+                        </fieldset>
+                        <fieldset>
+                            <legend>카테고리(다중선택)</legend>
+                            <input
+                                type="checkbox"
+                                name="category"
+                                value="IT/Internet/Computer"
+                                id="category:IT/Internet/Computer"
+                            />
+                            <label for="category:IT/Internet/Computer"
+                                >IT/인터넷/컴퓨터 </label
+                            ><br />
+                            <input
+                                type="checkbox"
+                                name="category"
+                                value="Fashion/Beauty"
+                                id="category:Fashion/Beauty"
+                            />
+                            <label for="category:Fashion/Beauty"
+                                >패션/미용 </label
+                            ><br />
+                            <input
+                                type="checkbox"
+                                name="category"
+                                value="Delicious"
+                                id="category:Delicious"
+                            />
+                            <label for="category:Delicious">맛집 </label><br />
+                            <input
+                                type="checkbox"
+                                name="category"
+                                value="ETC"
+                                id="category:ETC"
+                            />
+                            <label for="category:ETC">기타 </label><br />
+                        </fieldset>
+                        <footer class="buttons">
+                            <button type="submit">글쓰기</button>
+                            <button type="reset">초기화</button>
+                        </footer>
+                    </form>
+                </div>
+            </section>
+            <!-- 게시글 영역 -->
+            <section class="timeline">
+                <h2>타임라인</h2>
+                <!-- 게시글 1번 -->
+                <article class="item">
+                    <header>
+                        <h3>
+                            <a id="card1">이미지 태그 연습!</a>
+                        </h3>
+                        <p class="meta">
+                            기분: 행복함 / 카테고리: #맛집 / 작성일:
+                            <time datetime="2020-02-20 12:00">2020-02-20</time>
+                        </p>
+                    </header>
+                    <hr class="separator" />
+                    <figure class="image">
+                        <img 
+                            src="./assets/images/image-lg.jpg"
+                            srcset="
+                                ./assets/images/image-sm.jpg  400w,
+                                ./assets/images/image-md.jpg  700w,
+                                ./assets/images/image-lg.jpg 1000w
+                            "
+                            sizes="(max-width: 500px) 444px,
+                                   (max-width: 800px) 777px,
+                                   1222px"
+                            width="400"
+                            alt="연어덮밥(사케동)"
+                        />
+                        <figcaption>연어덮밥(사케동)</figcaption>
+                    </figure>
+                    <p>토실토실 연어가 올라가 있는 사케동!</p>
+                </article>
+                <!-- 게시글 2번 -->
+                <article class="item">
+                    <header>
+                        <h3>
+                            <a id="card2">리스트 태그 연습!</a>
+                        </h3>
+                        <p class="meta">
+                            기분: 행복함 / 카테고리: #기타 / 작성일:
+                            <time datetime="2020-02-10 10:00">2020-02-01</time>
+                        </p>
+                    </header>
+                    <hr class="separator" />
+                    <ol type="1">
+                        <li>
+                            동해물과 백두산이 마르고 닳도록 하느님이 보우하사
+                            우리나라 만세 무궁화 삼천리 화려 강산 대한 사람
+                            대한으로 길이 보전하세<br /><br />
+                        </li>
+                        <li>
+                            남산 위에 저 소나무 철갑을 두른 듯 바람 서리
+                            불변함은 우리 기상일세 무궁화 삼천리 화려 강산 대한
+                            사람 대한으로 길이 보전하세<br /><br />
+                        </li>
+                        <li>
+                            가을 하늘 공활한데 높고 구름 없이 밝은 달은 우리
+                            가슴 일편단심일세 무궁화 삼천리 화려 강산 대한 사람
+                            대한으로 길이 보전하세<br /><br />
+                        </li>
+                        <li>
+                            이 기상과 이 맘으로 충성을 다하여 괴로우나 즐거우나
+                            나라 사랑하세 무궁화 삼천리 화려 강산 대한 사람
+                            대한으로 길이 보전하세<br /><br />
+                        </li>
+                    </ol>
+                </article>
+            </section>
+            <!-- 우측 링크 영역 -->
+            <aside class="links">
+                <nav>
+                    <ul>
+                        <li>
+                            <a href="https://www.fastcampus.co.kr"
+                             target="_blank">
+                                패스트캠퍼스(새창)
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.fastcampus.co.kr"
+                             target="_self">
+                                바이트 디그리(현재창)
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </aside>
+        </main>
+        <!-- 푸터 -->
+        <footer class="footer">
+            <div class="container">
+                <p class="copyright">MY BLOG &copy; 2020</p>
+                <address class="contact">
+                    <ul>
+                        <li>사무실 : 서울시 강남구 강남대로 364</li>
+                        <li>
+                            이메일 :
+                            <a href="mailto:myblog@email.com">myblog@example.com</a>
+                        </li>
+                        <li>
+                            전화번호 :
+                            <a href="tel:12345678910">123-4567-8910</a>
+                        </li>
+                    </ul>
+                </address>
+            </div>
+        </footer>
+    </body>
+</html>
+
